@@ -46,6 +46,7 @@ public class ProductController implements HealthIndicator {
     @Override
     public Health health() {
         List<Product> products = productDao.findAll();
+
         if(products.isEmpty()) {
             return Health.down().build();
         }
