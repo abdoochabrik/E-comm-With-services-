@@ -1,4 +1,5 @@
-FROM adoptopenjdk/openjdk1.8:ubi
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
-COPY build/libs/*.jar app.jar
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD target/mproduits*.jar /app.jar
+EXPOSE 9101
+CMD ["java", "-jar", "app.jar"]
