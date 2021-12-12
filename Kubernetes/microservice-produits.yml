@@ -1,22 +1,23 @@
+# Deployment for the containers/pods
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: microservice-produits-app
+  labels:
+    app: microservice-produits-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: microservice-produits-app
   template:
     metadata:
       labels:
-        app: myapp
+        app: microservice-produits-app
     spec:
       containers:
-      - name: myapp
-        image: <Image>
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: <Port>
+        - name: product-container
+          image: chabrik/mproduits
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
