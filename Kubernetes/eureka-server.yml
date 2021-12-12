@@ -4,3 +4,18 @@ metadata:
   name: eureka-cm
 data:
   eureka_adresse: http://localhost:9102/eureka/
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  clusterIP: None
+  selector:
+    app: eureka
+  ports:
+    - port: 9102
+      name: eureka   
