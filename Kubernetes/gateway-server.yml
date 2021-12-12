@@ -21,3 +21,18 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9004
+
+---
+# Service for the containers/pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+spec:
+  selector:
+    app: gateway-server-app
+  type: LoadBalancer  
+  ports:
+    - port: 80
+      targetPort: 9004
+      protocol: TCP
