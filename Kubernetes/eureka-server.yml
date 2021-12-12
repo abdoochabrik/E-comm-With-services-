@@ -25,7 +25,7 @@ kind: Deployment
 metadata:
   name: eureka
 spec:
-  serviceName: "eureka"
+  #serviceName: "eureka"
   replicas: 1
   selector:
     matchLabels:
@@ -42,6 +42,20 @@ spec:
           ports:
             - containerPort: 9102
 ---
-           
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-lb 
+  labels:
+    name: eureka
+spec:
+  selector:
+    app: eureka
+  type: NodePort  
+  ports:
+    - port: 80
+      targetPort: 9102   
+
               
          
